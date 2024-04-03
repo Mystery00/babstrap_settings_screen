@@ -11,13 +11,15 @@ class SettingsGroup extends StatelessWidget {
   final EdgeInsets? margin;
   // Icons size
   final double? iconItemSize;
+  final Color dividerColor;
 
   SettingsGroup(
       {this.settingsGroupTitle,
       this.settingsGroupTitleStyle,
       required this.items,
       this.margin,
-      this.iconItemSize = 25});
+      this.iconItemSize = 25,
+      this.dividerColor = Colors.grey});
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +49,13 @@ class SettingsGroup extends StatelessWidget {
               color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: ListView.custom(
-              // separatorBuilder: (context, index) {
-              //   return Divider();
-              // },
+            child: ListView.separated(
+              separatorBuilder: (context, index) {
+                return Divider(
+                  height: 0.5,
+                  color: dividerColor,
+                );
+              },
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 return items[index];

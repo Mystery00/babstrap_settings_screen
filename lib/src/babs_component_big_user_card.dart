@@ -7,6 +7,7 @@ class BigUserCard extends StatelessWidget {
   final Color? backgroundMotifColor;
   final Widget? cardActionWidget;
   final String? userName;
+  final Color? userNameColor;
   final Widget? userMoreInfo;
   final ImageProvider userProfilePic;
 
@@ -15,6 +16,7 @@ class BigUserCard extends StatelessWidget {
     this.settingColor,
     this.cardRadius = 30,
     required this.userName,
+    this.userNameColor = Colors.white,
     this.backgroundMotifColor = Colors.white,
     this.cardActionWidget,
     this.userMoreInfo,
@@ -26,7 +28,6 @@ class BigUserCard extends StatelessWidget {
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     return Container(
       height: mediaQueryHeight / 4,
-      margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: backgroundColor ?? Theme.of(context).cardColor,
         borderRadius:
@@ -49,7 +50,7 @@ class BigUserCard extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: (cardActionWidget != null)
@@ -62,12 +63,20 @@ class BigUserCard extends StatelessWidget {
                   children: [
                     // User profile
                     Expanded(
-                      child: CircleAvatar(
-                        radius: mediaQueryHeight / 18,
-                        backgroundImage: userProfilePic,
+                      flex: 1,
+                      child: Container(
+                        width: 72,
+                        height: 72,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: userProfilePic,
+                          ),
+                        ),
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +86,7 @@ class BigUserCard extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: mediaQueryHeight / 30,
-                              color: Colors.white,
+                              color: userNameColor,
                             ),
                           ),
                           if (userMoreInfo != null) ...[

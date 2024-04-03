@@ -3,7 +3,7 @@ import 'package:babstrap_settings_screen/src/settings_screen_utils.dart';
 import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
-  final IconData icons;
+  final IconData? icons;
   final IconStyle? iconStyle;
   final String title;
   final TextStyle? titleStyle;
@@ -15,10 +15,9 @@ class SettingsItem extends StatelessWidget {
   final int? titleMaxLine;
   final int? subtitleMaxLine;
   final TextOverflow? overflow;
-  final double? minVerticalPadding;
 
   SettingsItem(
-      {required this.icons,
+      {this.icons,
       this.iconStyle,
       required this.title,
       this.titleStyle,
@@ -29,34 +28,41 @@ class SettingsItem extends StatelessWidget {
       this.onTap,
       this.titleMaxLine,
       this.subtitleMaxLine,
-      this.overflow = TextOverflow.ellipsis,
-      this.minVerticalPadding});
+      this.overflow = TextOverflow.ellipsis});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: ListTile(
-        minVerticalPadding: minVerticalPadding,
         onTap: onTap,
-        leading: (iconStyle != null && iconStyle!.withBackground!)
-            ? Container(
-                decoration: BoxDecoration(
-                  color: iconStyle!.backgroundColor,
-                  borderRadius: BorderRadius.circular(iconStyle!.borderRadius!),
-                ),
-                padding: EdgeInsets.all(5),
-                child: Icon(
-                  icons,
-                  size: SettingsScreenUtils.settingsGroupIconSize,
-                  color: iconStyle!.iconsColor,
-                ),
-              )
+        leading: (icons != null)
+            ? (iconStyle != null && iconStyle!.withBackground!)
+                ? Container(
+                    decoration: BoxDecoration(
+                      color: iconStyle!.backgroundColor,
+                      borderRadius:
+                          BorderRadius.circular(iconStyle!.borderRadius!),
+                    ),
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      icons,
+                      size: SettingsScreenUtils.settingsGroupIconSize,
+                      color: iconStyle!.iconsColor,
+                    ),
+                  )
+                : Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      icons,
+                      size: SettingsScreenUtils.settingsGroupIconSize,
+                    ),
+                  )
             : Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(
-                  icons,
-                  size: SettingsScreenUtils.settingsGroupIconSize,
+                child: SizedBox(
+                  width: SettingsScreenUtils.settingsGroupIconSize,
+                  height: SettingsScreenUtils.settingsGroupIconSize,
                 ),
               ),
         title: Text(
