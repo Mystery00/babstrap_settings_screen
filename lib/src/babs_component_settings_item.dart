@@ -15,6 +15,7 @@ class SettingsItem extends StatelessWidget {
   final int? titleMaxLine;
   final int? subtitleMaxLine;
   final TextOverflow? overflow;
+  final double? minVerticalPadding;
 
   SettingsItem(
       {required this.icons,
@@ -28,13 +29,15 @@ class SettingsItem extends StatelessWidget {
       this.onTap,
       this.titleMaxLine,
       this.subtitleMaxLine,
-      this.overflow = TextOverflow.ellipsis});
+      this.overflow = TextOverflow.ellipsis,
+      this.minVerticalPadding});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: ListTile(
+        minVerticalPadding: minVerticalPadding,
         onTap: onTap,
         leading: (iconStyle != null && iconStyle!.withBackground!)
             ? Container(
