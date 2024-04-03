@@ -47,10 +47,10 @@ class SettingsGroup extends StatelessWidget {
               color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: ListView.separated(
-              separatorBuilder: (context, index) {
-                return Divider();
-              },
+            child: ListView.custom(
+              // separatorBuilder: (context, index) {
+              //   return Divider();
+              // },
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 return items[index];
