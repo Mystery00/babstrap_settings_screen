@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
   final IconData? icons;
+  final ImageProvider? iconImage;
   final IconStyle? iconStyle;
   final String title;
   final TextStyle? titleStyle;
@@ -18,6 +19,7 @@ class SettingsItem extends StatelessWidget {
 
   SettingsItem(
       {this.icons,
+      this.iconImage,
       this.iconStyle,
       required this.title,
       this.titleStyle,
@@ -32,39 +34,53 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget? iconWidget;
+    if (icons != null) {
+      if (iconStyle != null && iconStyle!.withBackground!) {
+        iconWidget = Container(
+          decoration: BoxDecoration(
+            color: iconStyle!.backgroundColor,
+            borderRadius: BorderRadius.circular(iconStyle!.borderRadius!),
+          ),
+          padding: EdgeInsets.all(5),
+          child: Icon(
+            icons,
+            size: SettingsScreenUtils.settingsGroupIconSize,
+            color: iconStyle!.iconsColor,
+          ),
+        );
+      } else {
+        iconWidget = Padding(
+          padding: EdgeInsets.all(5),
+          child: Icon(
+            icons,
+            size: SettingsScreenUtils.settingsGroupIconSize,
+          ),
+        );
+      }
+    } else if (iconImage != null) {
+      iconWidget = Padding(
+        padding: EdgeInsets.all(5),
+        child: Image(
+          image: iconImage!,
+          width: SettingsScreenUtils.settingsGroupIconSize,
+          height: SettingsScreenUtils.settingsGroupIconSize,
+        ),
+      );
+    } else {
+      iconWidget = Padding(
+        padding: EdgeInsets.all(5),
+        child: SizedBox(
+          width: SettingsScreenUtils.settingsGroupIconSize,
+          height: SettingsScreenUtils.settingsGroupIconSize,
+        ),
+      );
+    }
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: ListTile(
         onTap: onTap,
-        leading: (icons != null)
-            ? (iconStyle != null && iconStyle!.withBackground!)
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: iconStyle!.backgroundColor,
-                      borderRadius:
-                          BorderRadius.circular(iconStyle!.borderRadius!),
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: Icon(
-                      icons,
-                      size: SettingsScreenUtils.settingsGroupIconSize,
-                      color: iconStyle!.iconsColor,
-                    ),
-                  )
-                : Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Icon(
-                      icons,
-                      size: SettingsScreenUtils.settingsGroupIconSize,
-                    ),
-                  )
-            : Padding(
-                padding: EdgeInsets.all(5),
-                child: SizedBox(
-                  width: SettingsScreenUtils.settingsGroupIconSize,
-                  height: SettingsScreenUtils.settingsGroupIconSize,
-                ),
-              ),
+        leading: iconWidget,
         title: Text(
           title,
           style: titleStyle ?? TextStyle(fontWeight: FontWeight.bold),
