@@ -1,5 +1,4 @@
 import 'package:babstrap_settings_screen/src/babs_component_settings_item.dart';
-import 'package:babstrap_settings_screen/src/settings_screen_utils.dart';
 import 'package:flutter/material.dart';
 
 /// This component group the Settings items (BabsComponentSettingsItem)
@@ -9,8 +8,6 @@ class SettingsGroup extends StatelessWidget {
   final TextStyle? settingsGroupTitleStyle;
   final List<SettingsItem> items;
   final EdgeInsets? margin;
-  // Icons size
-  final double? iconItemSize;
   final Color dividerColor;
 
   SettingsGroup(
@@ -18,14 +15,10 @@ class SettingsGroup extends StatelessWidget {
       this.settingsGroupTitleStyle,
       required this.items,
       this.margin,
-      this.iconItemSize = 25,
       this.dividerColor = Colors.grey});
 
   @override
   Widget build(BuildContext context) {
-    if (this.iconItemSize != null)
-      SettingsScreenUtils.settingsGroupIconSize = iconItemSize;
-
     return Container(
       margin: margin ?? EdgeInsets.only(bottom: 20),
       child: Column(

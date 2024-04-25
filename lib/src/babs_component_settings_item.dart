@@ -1,5 +1,4 @@
 import 'package:babstrap_settings_screen/src/icon_style.dart';
-import 'package:babstrap_settings_screen/src/settings_screen_utils.dart';
 import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
@@ -45,7 +44,7 @@ class SettingsItem extends StatelessWidget {
           padding: EdgeInsets.all(5),
           child: Icon(
             icons,
-            size: SettingsScreenUtils.settingsGroupIconSize,
+            size: iconStyle!.iconSize,
             color: iconStyle!.iconsColor,
           ),
         );
@@ -54,7 +53,7 @@ class SettingsItem extends StatelessWidget {
           padding: EdgeInsets.all(5),
           child: Icon(
             icons,
-            size: SettingsScreenUtils.settingsGroupIconSize,
+            size: iconStyle!.iconSize,
           ),
         );
       }
@@ -63,16 +62,16 @@ class SettingsItem extends StatelessWidget {
         padding: EdgeInsets.all(5),
         child: Image(
           image: iconImage!,
-          width: SettingsScreenUtils.settingsGroupIconSize,
-          height: SettingsScreenUtils.settingsGroupIconSize,
+          width: iconStyle!.iconSize,
+          height: iconStyle!.iconSize,
         ),
       );
     } else {
       iconWidget = Padding(
         padding: EdgeInsets.all(5),
         child: SizedBox(
-          width: SettingsScreenUtils.settingsGroupIconSize,
-          height: SettingsScreenUtils.settingsGroupIconSize,
+          width: iconStyle!.iconSize,
+          height: iconStyle!.iconSize,
         ),
       );
     }

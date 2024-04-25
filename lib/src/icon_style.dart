@@ -5,14 +5,17 @@ class IconStyle {
   bool? withBackground;
   Color? backgroundColor;
   double? borderRadius;
+  double? iconSize;
 
   IconStyle({
     iconsColor = Colors.white,
     withBackground = true,
     backgroundColor = Colors.blue,
     borderRadius = 8,
+    iconSize = 25,
   })  : this.iconsColor = iconsColor,
         this.withBackground = withBackground,
         this.backgroundColor = backgroundColor,
-        this.borderRadius = double.parse(borderRadius!.toString());
+        this.borderRadius = double.parse(borderRadius!.toString()),
+        this.iconSize = iconSize;
 }
