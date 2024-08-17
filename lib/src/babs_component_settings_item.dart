@@ -95,7 +95,11 @@ class SettingsItem extends StatelessWidget {
                     subtitleMaxLine != null ? TextOverflow.ellipsis : null,
               )
             : null,
-        trailing: (trailing != null) ? trailing : Icon(Icons.navigate_next),
+        trailing: (trailing != null)
+            ? trailing
+            : (onTap != null)
+                ? Icon(Icons.navigate_next)
+                : null,
       ),
     );
   }
