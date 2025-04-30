@@ -19,7 +19,7 @@ class SettingsGroup extends StatelessWidget {
       required this.items,
       this.backgroundColor,
       this.margin,
-      this.iconItemSize = 25
+      this.iconItemSize = 25,
       this.dividerColor = Colors.grey});
 
   @override
