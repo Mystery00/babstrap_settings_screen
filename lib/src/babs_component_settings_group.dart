@@ -8,13 +8,18 @@ class SettingsGroup extends StatelessWidget {
   final TextStyle? settingsGroupTitleStyle;
   final List<SettingsItem> items;
   final EdgeInsets? margin;
+  final Color? backgroundColor;
+  // Icons size
+  final double? iconItemSize;
   final Color dividerColor;
 
   SettingsGroup(
       {this.settingsGroupTitle,
       this.settingsGroupTitleStyle,
       required this.items,
+      this.backgroundColor,
       this.margin,
+      this.iconItemSize = 25
       this.dividerColor = Colors.grey});
 
   @override
@@ -39,7 +44,7 @@ class SettingsGroup extends StatelessWidget {
           // The SettingsGroup sections
           Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
+              color: backgroundColor ?? Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(15),
             ),
             child: ListView.separated(
